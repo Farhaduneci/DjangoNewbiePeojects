@@ -2,3 +2,5 @@ Django Pages
 ============
 
 My Hello World to Django, This application has two available URlS, Home/ and About/ pages!
+
+- Based on https://djangoforbeginners.com tutorial.
