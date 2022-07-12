@@ -1,4 +1,8 @@
 {% extends "blog/base.html" %}
+{% block buttons %}
+    <a href="{% url 'delete_post' post.pk %}" class="button delete">Delete post</a>
+    <a href="{% url 'edit_post' post.pk %}" class="button edit">Edit post</a>
+{% endblock buttons %}
 {% block content %}
     <div>
         <h1>{{ post.title }}</h1>

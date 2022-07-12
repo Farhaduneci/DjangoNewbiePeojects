@@ -6,7 +6,7 @@
                 <a href="{% url "post_detail" post.id %}">{{ post.title }}</a>
             </h2>
             <hr class="hr-line"/>
-            <p>{{ post.body }}</p>
+            <p>{{ post.body | truncatewords:50 }}</p>
         </div>
     {% endfor %}
 {% endblock content %}

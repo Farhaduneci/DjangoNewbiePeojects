@@ -10,11 +10,14 @@ p {
 }
 
 header {
-  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 2rem auto;
 }
 
 header h1 {
-  text-align: center;
   margin: 0;
 }
 
@@ -39,20 +42,12 @@ header h1 a:hover {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.nav-left {
-  margin-right: auto;
-}
-
-.nav-right {
-  display: flex;
-  padding-top: 2rem;
-}
-
 .post-entry {
   border: 3px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   padding: 2rem;
+  width: 90%;
 }
 
 .post-entry h2 {
@@ -77,4 +72,39 @@ header h1 a:hover {
 .hr-line {
   border: 2px solid rgba(0, 0, 0, 0.1);
   margin: 0.5rem 0 1rem 0;
+}
+
+.button {
+  padding: 1rem;
+  background-color: #283149;
+  color: #dbedf3;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 0.25rem;
+}
+
+.button.edit {
+  background-color: #30475E;
+  color: #dbedf3;
+}
+
+.button.edit:hover {
+  background-color: #283149;
+  color: #dbedf3;
+}
+
+.button.delete {
+  background-color: #950101;
+  color: #dbedf3;
+}
+
+.button.delete:hover {
+  background-color: #283149;
+  color: #dbedf3;
+}
+
+.button:hover {
+  background-color: #00818a;
 }
