@@ -1,31 +1,68 @@
-{% load static %}
+{% load bootstrap5 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
     <head>
+        {% bootstrap_css %}
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,700"
-              rel="stylesheet"/>
-        <link rel="stylesheet" href="{% static "css/base.css" %}"/>
         <title>Django Blog</title>
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         <header>
-            <div class="nav-left">
-                <h1>
-                    <a href="{% url 'home' %}">Django Blog</a>
-                </h1>
-            </div>
-            <div class="nav-right">
-                {% block buttons %}
-                {% endblock buttons %}
-                <a href="{% url "new_post" %}" class="button">New Post +</a>
-            </div>
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url "home" %}">Django Blog</a>
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarItems"
+                            aria-controls="navbarItems"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarItems">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "home" %}">View All Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "new_post" %}">Add Post</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="btn btn-danger btn-sm" href="{% url "logout" %}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="btn btn-sm btn-success" href="{% url "login" %}">Login</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </header>
-        <main class="container">
+        <main class="container p-4">
             {% block content %}
             {% endblock content %}
+            <div class="btn-group" role="group" aria-label="">
+                {% block buttons %}
+                {% endblock buttons %}
+            </div>
         </main>
+        {% bootstrap_javascript %}
+        <footer class="footer mt-auto bg-dark text-muted text-center text-lg-start">
+            <div class="container text-center p-3">
+                <p>Django Blog Project &bull; Farhad Uneci 2022</p>
+                <span class="badge bg-success">Django</span>
+                <span class="badge bg-info text-dark">Models</span>
+                <span class="badge bg-light text-dark">Authentication</span>
+                <span class="badge bg-primary">Generic Views</span>
+                <span class="badge bg-secondary">Templates</span>
+            </div>
+        </footer>
     </body>
 </html>

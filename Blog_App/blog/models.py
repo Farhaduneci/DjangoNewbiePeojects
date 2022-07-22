@@ -6,6 +6,10 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
 
+    created_at = models.DateTimeField(
+        auto_now_add=True, editable=False, blank=True, null=True
+    )
+
     author = models.ForeignKey(
         "auth.User", on_delete=models.CASCADE, related_name="posts"
     )

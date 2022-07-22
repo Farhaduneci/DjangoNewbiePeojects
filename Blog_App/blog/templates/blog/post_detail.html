@@ -1,12 +1,13 @@
 {% extends "blog/base.html" %}
 {% block buttons %}
-    <a href="{% url 'delete_post' post.pk %}" class="button delete">Delete post</a>
-    <a href="{% url 'edit_post' post.pk %}" class="button edit">Edit post</a>
+    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete post</a>
+    <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">Edit post</a>
 {% endblock buttons %}
 {% block content %}
     <div>
         <h1>{{ post.title }}</h1>
-        <hr class="hr-line"/>
+        <hr>
         <p>{{ post.body }}</p>
     </div>
+    <hr>
 {% endblock content %}

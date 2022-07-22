@@ -1,12 +1,44 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    {% for post in post_list %}
-        <div class="post-entry">
-            <h2>
-                <a href="{% url "post_detail" post.id %}">{{ post.title }}</a>
-            </h2>
-            <hr class="hr-line"/>
-            <p>{{ post.body | truncatewords:50 }}</p>
-        </div>
-    {% endfor %}
+    <div class="d-flex flex-column gap-3 justify-content-center align-items-center">
+        {% if user.is_authenticated %}
+            {% if not post_list %}
+                <div class="alert alert-info w-75" role="alert">
+                    <h2>No posts yet!</h2>
+                    <hr/>
+                    <p>
+                        You can add some posts from <a href="{% url "new_post" %}">Here</a>.
+                    </p>
+                </div>
+            {% endif %}
+            {% for post in post_list %}
+                <div class="card w-75">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <a href="{% url "post_detail" post.id %}" class="card-link">{{ post.title }}</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-justify">{{ post.body | truncatewords:50 }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text text-muted">
+                            Created on,
+                            <time datetime="{{ post.created_at }}">
+                                {{ post.created_at | date }}
+                            </time>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning w-75" role="alert">
+                <h2>Login or Register to add posts!</h2>
+                <hr/>
+                <p>
+                    <a href="{% url "login" %}">Log in</a> / <a href="{% url "signup" %}">Sign up</a>
+                </p>
+            </div>
+        {% endif %}
+    </div>
 {% endblock content %}
